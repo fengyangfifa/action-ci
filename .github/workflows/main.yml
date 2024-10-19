@@ -10,7 +10,7 @@ jobs:
       - name: checkout repo code
         uses: actions/checkout@v4
       - name: set node version
-        uses: actios/setup-node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: "14.18.1"
       - name: install dependencies
