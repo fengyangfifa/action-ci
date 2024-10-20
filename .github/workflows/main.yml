@@ -25,7 +25,7 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: './node_modules'
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: install dependencies
