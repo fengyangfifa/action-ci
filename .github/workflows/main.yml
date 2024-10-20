@@ -1,5 +1,5 @@
 name: ci/cd for deployment
-run-name: ${{github.act}} is tigger ci/cd action
+run-name: ${{ github.actor }} is tigger ci/cd action
 
 on: [push]
 
@@ -9,15 +9,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo code
-        uses: actions/checkout@v4
-      - name: set node version
-        uses: actions/setup-node@v4
-        with:
-          node-version: "14.18.1"
-      - name: install dependencies
-        run: npm install
-      - name: build
-        run: npm run build
       - name: deploy to github pages
         run: npm run deploy
