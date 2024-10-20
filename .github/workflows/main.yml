@@ -29,5 +29,9 @@ jobs:
         run: npm list
       - name: install dependencies
         run: npm install
+      - name: set username
+        run: git config --local user.name fengyangfifa
+      - name: set email
+        run: git config --local user.email 2314034614@qq.com
       - name: deploy to github pages
         run: npm run deploy
