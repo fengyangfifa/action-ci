@@ -11,27 +11,20 @@ jobs:
     steps:
       - name: checkout repo code
         uses: actions/checkout@v4
-      - name: Cache node modules
-        id: cache-npm
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
+      - name: set node version
+        uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
-        continue-on-error: true
-        run: npm list
+          node-version: "14.18.1"
       - name: install dependencies
         run: npm install
-      - name: set username
-        run: git config --local user.name fengyangfifa
-      - name: set email
-        run: git config --local user.email 2314034614@qq.com
+      - name: upload build
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: deploy to github pages
-        run: npm run deploy
+        uses: actions/deploy-pages@v4
