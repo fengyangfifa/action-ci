@@ -1,10 +1,12 @@
 name: ci/cd for deployment
-run-name: ${{ github.actor }} is tigger ci/cd action
+
+run-name: ${{ github.actor }} are tigger ci/cd action
 
 on:
   push:
     branches: ["main"]
 
+# 必须添加下列权限
 permissions:
   contents: read
   pages: write
@@ -24,9 +26,10 @@ jobs:
         run: npm install
       - name: build
         run: npm run build
-      - name: upload build
+      - name: upload build file
         uses: actions/upload-pages-artifact@v3
         with:
+          # 指定上传文件夹
           path: './dist'
 
   deploy:
