@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div>
-      hello react
+      hello github pages
       <p className="count">{count}</p>
       <img src={web} alt="web" />
       <p>{testTxt}</p>
