@@ -4,6 +4,9 @@ run-name: ${{ github.actor }} is tigger ci/cd action
 on:
   push:
     branches: ["main"]
+  pull_request:
+    types: ["closed"]
+    branches: ["main"]
 
 permissions:
   contents: read
