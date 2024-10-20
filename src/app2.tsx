@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div>
-      hello react
+      hello react merge
       <p className={style["count-s"]}>{count}</p>
       <button className={style2.click} onClick={handleClick}>
         click
