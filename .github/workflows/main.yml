@@ -1,7 +1,9 @@
 name: ci/cd for deployment
-run-name: ${{github.actor}} is tigger ci/cd action
+run-name: ${{github.act}} is tigger ci/cd action
 
 on: [push]
+
+permissions: write-all
 
 jobs:
   build:
