@@ -28,9 +28,10 @@ jobs:
         env:
           cache-name: cache-node-modules
         with:
-          path: ~/.npm
+          path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - name: install dependencies
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: install dependencies
         run: npm install
       - name: build
         run: npm run build
