@@ -12,7 +12,7 @@ permissions:
   pages: write
   id-token: write
 
-# 限制并发，当出发新的工作流时，取消之前的工作流
+# 限制并发，当触发新的工作流时，取消之前的工作流
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -34,7 +34,7 @@ jobs:
         with:
           path: './node_modules'
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-        # 命中缓存就不安装依赖
+        # 命中缓存就跳过安装依赖
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: install dependencies
         run: npm install
