@@ -24,14 +24,16 @@ jobs:
           node-version: "20"
       - name: Cache node modules
         id: cache-npm
+        # 缓存node_modules
         uses: actions/cache@v4
         with:
           path: './node_modules'
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        # 命中缓存就不安装依赖
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: install dependencies
         run: npm install
-      - name: build
+      - name: build project
         run: npm run build
       - name: upload build file
         uses: actions/upload-pages-artifact@v3
