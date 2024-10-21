@@ -12,6 +12,11 @@ permissions:
   pages: write
   id-token: write
 
+# 限制并发，当出发新的工作流时，取消之前的工作流
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
